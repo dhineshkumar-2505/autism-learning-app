@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Bright Steps - Learn & Trace</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading Bright Steps...</div>
+    </div>
+
+    <!-- PWA Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <div>
+            <strong>Install Bright Steps</strong><br>
+            <small>Add to home screen for the best experience!</small>
+        </div>
+        <button class="install-btn" id="installBtn">Install</button>
+        <button class="close-install" id="closeInstall">×</button>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
+    
+    <!-- Main Menu -->
+    <div class="game-state active main-menu" id="mainMenu">
+        <div class="logo">
+            <h1>✨ Bright Steps</h1>
+            <p>Learn, Trace & Master the Alphabet!</p>
+        </div>
+        
+        <div class="menu-buttons">
+            <button class="menu-btn play-btn" onclick="startGame()">
+                🎮 Start Playing
+            </button>
+            <button class="menu-btn" onclick="showLevels()">
+                📊 Levels
+            </button>
+            <button class="menu-btn" onclick="showSettings()">
+                ⚙️ Settings
+            </button>
+        </div>
+    </div>
+    
+    <!-- Game Screen -->
+    <div class="game-state game-screen" id="gameScreen">
+        <div class="game-header">
+            <button class="back-btn" onclick="goHome()">← Back</button>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="stars-container" id="starsContainer">
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+            </div>
+        </div>
+        
+        <div class="stats-panel">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="accuracy">0%</span>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="attempts">0</span>
+                    <div class="stat-label">Attempts</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="completed">0</span>
+                    <div class="stat-label">Completed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="streak">0</span>
+                    <div class="stat-label">Streak</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-content">
+            <div class="letter-selector">
+                <div class="category-tabs">
+                    <button class="category-tab active" data-category="uppercase" onclick="switchCategory('uppercase')">ABC</button>
+                    <button class="category-tab" data-category="lowercase" onclick="switchCategory('lowercase')">abc</button>
+                    <button class="category-tab" data-category="numbers" onclick="switchCategory('numbers')">123</button>
+                    <button class="category-tab" data-category="shapes" onclick="switchCategory('shapes')">🔺</button>
+                </div>
+                <div class="letters-grid" id="lettersGrid">
+                    <!-- Letters will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="canvas-area">
+                <div class="current-letter-display">
+                    <div class="current-letter" id="currentLetter" onclick="playSound()">A</div>
+                    <p>Click the letter to hear its sound!</p>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="tracingCanvas" width="600" height="400"></canvas>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn clear-btn" onclick="clearCanvas()">
+                        🗑️ Clear
+                    </button>
+                    <button class="action-btn hint-btn" onclick="showHint()">
+                        💡 Show Me How
+                    </button>
+                    <button class="action-btn next-btn" onclick="nextLetter()">
+                        ⏭️ Next
+                    </button>
+                    <button class="action-btn check-btn" onclick="checkTracing()">
+                        ✅ Check My Work
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feedback Overlay -->
+    <div class="feedback-overlay" id="feedbackOverlay">
+        <div class="feedback-card">
+            <div class="feedback-icon" id="feedbackIcon">🎉</div>
+            <div class="feedback-title" id="feedbackTitle">Excellent!</div>
+            <div class="feedback-message" id="feedbackMessage">Perfect tracing! You're doing great!</div>
+            <button class="feedback-btn" onclick="closeFeedback()">Continue</button>
+        </div>
+    </div>
+    
+    <!-- Celebration Container -->
+    <div class="celebration" id="celebration"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
